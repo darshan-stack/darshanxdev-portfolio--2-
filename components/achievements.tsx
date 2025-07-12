@@ -198,7 +198,6 @@ export function Achievements() {
               <a href="https://www.linkedin.com/in/darshanxdevs" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline">LinkedIn</a>
               <a href="https://x.com/futrgenX" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline">X (Twitter)</a>
             </div>
-            <div className="text-white text-sm font-mono">📱 8010599511</div>
             <div className="text-white text-xs font-mono">✉️ darshanmistaridz@gmail.com</div>
             <div className="text-white text-xs font-mono mb-2">✉️ darshanmistari14@gmail.com</div>
           </div>

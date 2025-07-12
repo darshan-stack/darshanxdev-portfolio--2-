@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion"
 import { Bot } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export function Logo() {
+  const { theme } = useTheme();
+  
   return (
     <motion.div
       initial={{ opacity: 0, x: -50 }}
@@ -22,7 +25,12 @@ export function Logo() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="font-bold text-2xl hidden sm:block bg-gradient-to-r from-black via-green-500 to-blue-900 bg-clip-text text-transparent drop-shadow-lg"
+        className="font-bold text-xl sm:text-2xl font-['Zeyada'] bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent drop-shadow-lg"
+        style={{
+          fontFamily: '"Zeyada", cursive',
+          fontWeight: 400,
+          fontStyle: 'normal'
+        }}
       >
         DarshanXDev
       </motion.span>

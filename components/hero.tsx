@@ -16,12 +16,16 @@ import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import GridBackground from "@/components/ui/grid-background";
 import * as THREE from "three";
 import { useLoader } from "@react-three/fiber";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { AuroraTypewriterText } from "@/components/magicui/aurora-typewriter-text";
 import { WavyBackground } from "@/components/ui/wavy-background";
+import { useFrame } from "@react-three/fiber";
 
 function AnimatedSphere({ color, gradient, gradientUrl }: { color: string, gradient?: boolean, gradientUrl?: string }) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
   let texture: THREE.Texture | null = null;
   try {
     if (gradientUrl) {
@@ -30,8 +34,33 @@ function AnimatedSphere({ color, gradient, gradientUrl }: { color: string, gradi
   } catch (e) {
     texture = null;
   }
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      // Convert mouse position to normalized coordinates (-1 to 1)
+      const x = (event.clientX / window.innerWidth) * 2 - 1;
+      const y = -(event.clientY / window.innerHeight) * 2 + 1;
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useFrame(() => {
+    if (meshRef.current) {
+      // Smoothly interpolate the sphere position towards mouse position
+      meshRef.current.position.x += (mousePosition.x * 2 - meshRef.current.position.x) * 0.05;
+      meshRef.current.position.y += (mousePosition.y * 2 - meshRef.current.position.y) * 0.05;
+      
+      // Add subtle rotation based on mouse movement
+      meshRef.current.rotation.x += 0.01;
+      meshRef.current.rotation.y += 0.01;
+    }
+  });
+
   return (
-    <Sphere visible args={[1, 100, 200]} scale={2}>
+    <Sphere ref={meshRef} visible args={[1, 100, 200]} scale={2}>
       <MeshDistortMaterial
         map={texture || undefined}
         color={texture ? undefined : color}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from "@/components/theme-provider";
+import { SmoothCursor } from "@/components/magicui/smooth-cursor";
 
 export const metadata: Metadata = {
   title: 'v0 App',
@@ -18,11 +19,12 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comforter&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Nothing+You+Could+Do&family=Rock+Salt&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comforter&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Nothing+You+Could+Do&family=Rock+Salt&family=Zeyada&display=swap" rel="stylesheet" />
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <SmoothCursor />
         </ThemeProvider>
       </body>
     </html>
