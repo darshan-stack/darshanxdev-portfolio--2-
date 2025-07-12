@@ -14,6 +14,8 @@ const achievements = [
     description: "Secured 1st place in three national hackathons (2023–2024), recognized for innovative AI and robotics solutions.",
     year: "2023–2024",
     color: "#ffd700",
+    gradient: "from-yellow-400 via-orange-500 to-red-500",
+    bgGradient: "from-yellow-500/20 via-orange-500/20 to-red-500/20"
   },
   {
     icon: Award,
@@ -21,13 +23,17 @@ const achievements = [
     description: "Selected as one of the top 100 teams in the prestigious Smart India Hackathon 2024.",
     year: "2024",
     color: "#c0c0c0",
+    gradient: "from-blue-400 via-indigo-500 to-purple-600",
+    bgGradient: "from-blue-500/20 via-indigo-500/20 to-purple-600/20"
   },
   {
     icon: Star,
-    title: "Peer’s Global Hackathon Finalist (Top 10%)",
-    description: "Ranked in the top 10% among thousands of participants in Peer’s Global Hackathon 2024.",
+    title: "Peer's Global Hackathon Finalist (Top 10%)",
+    description: "Ranked in the top 10% among thousands of participants in Peer's Global Hackathon 2024.",
     year: "2024",
     color: "#cd7f32",
+    gradient: "from-green-400 via-emerald-500 to-teal-600",
+    bgGradient: "from-green-500/20 via-emerald-500/20 to-teal-600/20"
   },
   {
     icon: Target,
@@ -35,6 +41,8 @@ const achievements = [
     description: "Finalist in the Warehouse Drone Theme, demonstrating advanced robotics and automation skills.",
     year: "2024",
     color: "#3b82f6",
+    gradient: "from-pink-400 via-rose-500 to-fuchsia-600",
+    bgGradient: "from-pink-500/20 via-rose-500/20 to-fuchsia-600/20"
   },
   {
     icon: Star,
@@ -42,6 +50,8 @@ const achievements = [
     description: "Consistently placed in the top 10 at over 14 national-level hackathons, showcasing versatility and innovation.",
     year: "2022–2024",
     color: "#8b5cf6",
+    gradient: "from-cyan-400 via-sky-500 to-blue-600",
+    bgGradient: "from-cyan-500/20 via-sky-500/20 to-blue-600/20"
   },
 ];
 
@@ -52,24 +62,36 @@ const stats = [
   { number: "2", label: "Finalist (Global/National)" },
 ];
 
-// FlipCard component for 3D flip effect
-function FlipCard({ icon: Icon, title, year, description, color }: { icon: any, title: string, year: string, description: string, color: string }) {
+// FlipCard component for 3D flip effect with improved typography
+function FlipCard({ icon: Icon, title, year, description, color, gradient, bgGradient }: { 
+  icon: any, 
+  title: string, 
+  year: string, 
+  description: string, 
+  color: string,
+  gradient: string,
+  bgGradient: string
+}) {
   return (
     <div className="[perspective:900px] w-60 h-72 mx-auto">
       <div className="relative w-full h-full transition-transform duration-[1500ms] [transform-style:preserve-3d] group hover:[transform:rotateY(180deg)_rotateZ(180deg)]">
         {/* Front */}
-        <div className="absolute w-full h-full rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 text-aliceblue [backface-visibility:hidden] bg-gradient-to-br from-[#F80A4A] to-[#0AA4F8]">
-          <div className="p-3 rounded-full mb-2" style={{ backgroundColor: color + '20' }}>
+        <div className={`absolute w-full h-full rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 text-white [backface-visibility:hidden] bg-gradient-to-br ${gradient}`}>
+          <div className={`p-3 rounded-full mb-2 bg-gradient-to-br ${bgGradient} backdrop-blur-sm`}>
             <Icon className="w-9 h-9" style={{ color }} />
           </div>
-          <p className="front-heading text-xl font-bold">{title}</p>
-          <span className="text-sm opacity-80">{year}</span>
+          <div className="text-center px-4">
+            <h3 className="text-lg font-bold leading-tight mb-2 tracking-wide">{title}</h3>
+            <span className="text-sm font-medium opacity-90 bg-white/10 px-3 py-1 rounded-full">{year}</span>
+          </div>
         </div>
         {/* Back */}
-        <div className="absolute w-full h-full rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 text-aliceblue [backface-visibility:hidden] bg-gradient-to-br from-[#F80A4A] to-[#0AA4F8] [transform:rotateY(180deg)_rotateZ(180deg)]">
-          <p className="back-heading text-xl font-bold">{title}</p>
-          <span className="text-sm opacity-80">{year}</span>
-          <p className="text-center text-xs px-4 opacity-90">{description}</p>
+        <div className={`absolute w-full h-full rounded-2xl shadow-lg flex flex-col items-center justify-center gap-3 text-white [backface-visibility:hidden] bg-gradient-to-br ${gradient} [transform:rotateY(180deg)_rotateZ(180deg)]`}>
+          <div className="text-center px-4">
+            <h3 className="text-lg font-bold leading-tight mb-2 tracking-wide">{title}</h3>
+            <span className="text-sm font-medium opacity-90 bg-white/10 px-3 py-1 rounded-full mb-3">{year}</span>
+            <p className="text-xs leading-relaxed opacity-90 font-medium">{description}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -133,21 +155,21 @@ export function Achievements() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent tracking-wide">
             Achievements
           </h2>
-          <p className="text-xl md:text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100 max-w-4xl mx-auto leading-relaxed">
             Milestones and recognition in my journey of innovation and excellence
           </p>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Stats Section with improved typography */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
@@ -156,17 +178,17 @@ export function Achievements() {
                 whileInView={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-2xl md:text-3xl font-bold text-blue-500 mb-1"
+                className="text-3xl md:text-4xl font-bold text-blue-500 mb-2 tracking-tight"
               >
                 {stat.number}
               </motion.div>
-              <div className="text-sm md:text-base opacity-80">{stat.label}</div>
+              <div className="text-sm md:text-base font-medium opacity-80 leading-relaxed">{stat.label}</div>
             </div>
           ))}
         </motion.div>
 
-        {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Achievements Grid with improved spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {achievements.map((achievement, index) => (
             <FlipCard
               key={index}
@@ -175,11 +197,13 @@ export function Achievements() {
               year={achievement.year}
               description={achievement.description}
               color={achievement.color}
+              gradient={achievement.gradient}
+              bgGradient={achievement.bgGradient}
             />
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* Call to Action with improved typography */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -187,19 +211,21 @@ export function Achievements() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-4 max-w-md mx-auto mb-6">
-            <h3 className="text-xl md:text-2xl font-bold mb-2">Ready to Build Something Amazing?</h3>
-            <p className="text-base mb-4 opacity-90">Let's collaborate and create innovative solutions together</p>
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 max-w-lg mx-auto mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 tracking-wide">Ready to Build Something Amazing?</h3>
+            <p className="text-lg mb-6 opacity-90 leading-relaxed">Let's collaborate and create innovative solutions together</p>
             <LaunchButton />
           </div>
-          {/* Contact & Social Links */}
-          <div className="flex flex-col items-center gap-2 mt-6">
-            <div className="flex gap-4 justify-center mb-2">
-              <a href="https://www.linkedin.com/in/darshanxdevs" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline">LinkedIn</a>
-              <a href="https://x.com/futrgenX" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline">X (Twitter)</a>
+          {/* Contact & Social Links with improved layout */}
+          <div className="flex flex-col items-center gap-4 mt-8">
+            <div className="flex gap-6 justify-center mb-4">
+              <a href="https://www.linkedin.com/in/darshanxdevs" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline text-lg transition-colors">LinkedIn</a>
+              <a href="https://x.com/futrgenX" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-300 font-semibold underline text-lg transition-colors">X (Twitter)</a>
             </div>
-            <div className="text-white text-xs font-mono">✉️ darshanmistaridz@gmail.com</div>
-            <div className="text-white text-xs font-mono mb-2">✉️ darshanmistari14@gmail.com</div>
+            <div className="text-white text-sm font-mono space-y-1">
+              <div>✉️ darshanmistaridz@gmail.com</div>
+              <div>✉️ darshanmistari14@gmail.com</div>
+            </div>
           </div>
         </motion.div>
       </div>
