@@ -32,7 +32,7 @@ export function AIPassionAnimation() {
             y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 1000),
           }}
           transition={{
-            duration: 8,
+            duration: 16,
             repeat: Number.POSITIVE_INFINITY,
             delay: element.delay,
             ease: "easeInOut",

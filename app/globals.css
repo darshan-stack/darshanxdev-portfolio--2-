@@ -124,6 +124,15 @@ body {
   animation-direction: var(--animation-direction, forwards);
 }
 
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+.animate-\[bounce-x_1\.2s_infinite\] {
+  animation: bounce-x 1.2s infinite;
+}
+
 /* Font utility classes */
 .caveat {
   font-family: "Caveat", cursive;

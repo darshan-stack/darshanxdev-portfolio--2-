@@ -26,7 +26,7 @@ export function AuroraText({ children, className }: { children: React.ReactNode;
         fontWeight: 700,
       }}
       animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-      transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
     >
       {children}
     </motion.span>

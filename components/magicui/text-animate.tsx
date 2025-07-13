@@ -22,7 +22,7 @@ export function TextAnimate({
           key={i}
           initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: i * 0.04, duration: 0.5 }}
+          transition={{ delay: i * 0.08, duration: 1 }}
           viewport={{ once }}
           style={{ display: "inline-block" }}
         >

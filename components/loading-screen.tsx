@@ -22,12 +22,12 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer)
-          setTimeout(onComplete, 500)
+          setTimeout(onComplete, 1000)
           return 100
         }
-        return prev + 2
+        return prev + 1
       })
-    }, 50)
+    }, 100)
 
     return () => clearInterval(timer)
   }, [onComplete])
@@ -41,7 +41,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
         }
         return prev + 1
       })
-    }, 800)
+    }, 1600)
 
     return () => clearInterval(stepTimer)
   }, [])
@@ -67,9 +67,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                   opacity: [0.5, 1, 0.5],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  delay: index * 0.2,
+                  delay: index * 0.4,
                 }}
                 className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"
               >
@@ -131,9 +131,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
                   opacity: [0, 1, 0],
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: 3,
                   repeat: Number.POSITIVE_INFINITY,
-                  delay: i * 0.2,
+                  delay: i * 0.4,
                 }}
               />
             ))}

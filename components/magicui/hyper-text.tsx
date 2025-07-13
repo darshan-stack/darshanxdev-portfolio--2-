@@ -12,7 +12,7 @@ export function HyperText({ children }: { children: React.ReactNode }) {
           key={i}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.04, duration: 0.4 }}
+          transition={{ delay: i * 0.08, duration: 0.8 }}
           style={{ display: "inline-block" }}
         >
           {char}

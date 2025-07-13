@@ -36,13 +36,13 @@ export function AuroraTypewriterText({
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
             transition={{
-              opacity: { delay: i * 0.04, duration: 0.4 },
-              y: { delay: i * 0.04, duration: 0.4 },
+              opacity: { delay: i * 0.08, duration: 0.8 },
+              y: { delay: i * 0.08, duration: 0.8 },
               backgroundPosition: {
-                duration: 6,
+                duration: 12,
                 repeat: Infinity,
                 ease: "linear",
-                delay: i * 0.04,
+                delay: i * 0.08,
               },
             }}
             style={{
@@ -64,7 +64,7 @@ export function AuroraTypewriterText({
           className="inline-block w-[2px] h-6 align-middle bg-gradient-to-b from-blue-400 to-purple-400 ml-0.5 animate-pulse"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
         />
       )}
     </span>

@@ -24,7 +24,7 @@ export default function ColourfulText({ text }: { text: string }) {
       const shuffled = [...colors].sort(() => Math.random() - 0.5);
       setCurrentColors(shuffled);
       setCount((prev) => prev + 1);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -43,8 +43,8 @@ export default function ColourfulText({ text }: { text: string }) {
         opacity: [1, 0.8, 1],
       }}
       transition={{
-        duration: 0.5,
-        delay: index * 0.05,
+        duration: 1,
+        delay: index * 0.1,
       }}
       className="inline-block whitespace-pre font-sans tracking-tight"
     >

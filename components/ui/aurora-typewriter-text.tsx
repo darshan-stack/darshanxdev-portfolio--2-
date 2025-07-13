@@ -48,7 +48,7 @@ export function AuroraTypewriterText({ text, highlight, className }: AuroraTypew
               key={i}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.04, duration: 0.4 }}
+              transition={{ delay: i * 0.08, duration: 0.8 }}
               style={{
                 display: "inline-block",
                 background: `linear-gradient(90deg, ${highlightColors.join(",")})`,
@@ -67,7 +67,7 @@ export function AuroraTypewriterText({ text, highlight, className }: AuroraTypew
             key={i}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04, duration: 0.4 }}
+            transition={{ delay: i * 0.08, duration: 0.8 }}
             style={{
               display: "inline-block",
               background: `linear-gradient(90deg, ${auroraColors.join(",")})`,
@@ -86,7 +86,7 @@ export function AuroraTypewriterText({ text, highlight, className }: AuroraTypew
           className="inline-block w-[2px] h-6 align-middle bg-gradient-to-b from-blue-400 to-purple-400 ml-0.5 animate-pulse"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+          transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
         />
       )}
     </span>

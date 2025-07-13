@@ -22,6 +22,7 @@ import { AuroraTypewriterText } from "@/components/magicui/aurora-typewriter-tex
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { useFrame } from "@react-three/fiber";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import AboutFooter from "@/components/AboutFooter";
 
 function AnimatedSphere({ color, gradient, gradientUrl }: { color: string, gradient?: boolean, gradientUrl?: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -120,16 +121,23 @@ const sentences = [
   }
 ];
 
-export function Hero() {
-  const { theme, setTheme } = useTheme();
-  const mainName = "DARSHANXDEV"
-  const [sentenceIndex, setSentenceIndex] = useState(0);
+function ArrowIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 15 15" fill="none">
+      <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
+    </svg>
+  );
+}
 
-  // Alternate sentences every 5 seconds
+export function Hero() {
+  const { theme } = useTheme();
+  const altTexts = ["0", "1", "2", "3", "4", "5", "Infinity"];
+  const [altIndex, setAltIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setSentenceIndex((prev) => (prev + 1) % sentences.length);
-    }, 5000);
+      setAltIndex((prev) => (prev + 1) % altTexts.length);
+    }, 1000); // slowed down to 1 second
     return () => clearInterval(interval);
   }, []);
 
@@ -143,62 +151,26 @@ export function Hero() {
             : { background: "#000000" }
         }
       >
-        {/* Clock at the very top of hero section */}
-        <div className="relative z-50 w-full flex justify-center pt-8 mb-2">
-          <LiveClock />
-        </div>
-        
-        <div className="absolute inset-0 w-full h-full">
-          <Canvas>
-            <ambientLight intensity={1} />
-            <directionalLight position={[3, 2, 1]} />
-              {theme === "light" && <AnimatedSphere gradientUrl="/gradient.png" color="#18181b" gradient />}
-              {theme === "dark" && <AnimatedSphere gradientUrl="/gradient-dark.png" color="#fff" gradient />}
-          </Canvas>
-        </div>
-
-        <AIPassionAnimation />
-
-        {/* Centered main name above sphere, always visible */}
-        <div className="relative z-40 flex flex-col items-center justify-center w-full pt-8 mb-2">
-          <h1
-            className="text-6xl md:text-8xl font-extrabold mb-4 comforter"
-            style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
-          >
-            <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 bg-clip-text text-transparent inline-block">
-              <HyperText>DARSHANX.ai</HyperText>
+        <div className="relative z-40 flex flex-col items-center justify-center w-full pt-16 mb-2">
+          <h1 className="text-6xl md:text-8xl font-extrabold mb-4 comforter flex flex-col items-center" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
+            <span className="inline-block flex items-center">
+              <span className="bg-gradient-to-r from-cyan-400 via-fuchsia-500 to-yellow-400 bg-clip-text text-transparent">DARSHANX.me</span>
+              <span className="inline-block mx-2 animate-[bounce-x_1.2s_infinite]">
+                <ArrowIcon />
+              </span>
+              <span className="font-black text-black dark:text-white ml-2">{altTexts[altIndex]}</span>
             </span>
           </h1>
-        </div>
-
-        {/* Alternating TextAnimate effect for sentences */}
-        <div className="relative z-30 flex items-center justify-center w-full py-2 mb-6">
-          <span className={sentences[sentenceIndex].className}>
-            <TextAnimate animation="blurInUp" by="character" once>
-              {sentences[sentenceIndex].text}
-            </TextAnimate>
-          </span>
-        </div>
-
-        {/* Social Media 3D Logos at center bottom */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-          <div className="flex justify-center items-center gap-4 mt-1">
-            <a href="https://www.linkedin.com/in/darshanxdevs" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.icons8.com/cute-clipart/64/linkedin.png" alt="LinkedIn" className="w-8 h-8 rounded-full shadow-2xl" />
-            </a>
-            <a href="https://x.com/futrgenX" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.icons8.com/fluency/48/twitterx--v1.png" alt="Twitter X" className="w-8 h-8 rounded-full shadow-2xl" />
-            </a>
-            <a href="https://github.com/darshanxdev" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.icons8.com/sf-black-filled/64/github.png" alt="GitHub" className="w-8 h-8 rounded-full shadow-2xl" />
-            </a>
-            <a href="mailto:darshanmistaridz@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform">
-              <img src="https://img.icons8.com/color/48/gmail-new.png" alt="Gmail" className="w-8 h-8 rounded-full shadow-2xl" />
-            </a>
+          <div className="border-b-4 border-black dark:border-white w-3/4 my-4" />
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">Built different. Powered by code, curiosity, and chaos.</h2>
+          <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-center mt-2">
+            Hey, I'm Darshan — a full-stack developer blending code with creativity. From scalable systems to AI, ML, and robotics, I bring ideas to life with purpose and precision. I think deeply, build smart, and stay grounded — loud music fuels me, nature resets me. I bring a 1% mindset to deliver more than just growth — I deliver breakthroughs.
+          </p>
+          <div className="flex justify-center w-full mt-2">
+            <AboutFooter />
           </div>
         </div>
-        <BackgroundBeams />
       </div>
     </FollowerPointerCard>
-  )
+  );
 }

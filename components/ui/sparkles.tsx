@@ -240,7 +240,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                 animation: {
                   count: 0,
                   enable: true,
-                  speed: speed || 4,
+                  speed: speed || 2,
                   decay: 0,
                   delay: 0,
                   sync: false,
@@ -275,7 +275,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                 animation: {
                   count: 0,
                   enable: false,
-                  speed: 5,
+                  speed: 2.5,
                   decay: 0,
                   delay: 0,
                   sync: false,

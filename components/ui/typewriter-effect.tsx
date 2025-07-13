@@ -36,7 +36,7 @@ export const TypewriterEffect = ({
           width: "fit-content",
         },
         {
-          duration: 0.3,
+          duration: 0.6,
           // delay: stagger(0.1), // Remove or replace with appropriate framer-motion logic
           ease: "easeInOut",
         }
@@ -85,7 +85,7 @@ export const TypewriterEffect = ({
           opacity: 1,
         }}
         transition={{
-          duration: 0.8,
+          duration: 1.6,
           repeat: Infinity,
           repeatType: "reverse",
         }}
@@ -150,9 +150,9 @@ export const TypewriterEffectSmooth = ({
           width: "fit-content",
         }}
         transition={{
-          duration: 2,
+          duration: 4,
           ease: "linear",
-          delay: 1,
+          delay: 2,
         }}
       >
         <div
@@ -172,7 +172,7 @@ export const TypewriterEffectSmooth = ({
           opacity: 1,
         }}
         transition={{
-          duration: 0.8,
+          duration: 1.6,
 
           repeat: Infinity,
           repeatType: "reverse",
